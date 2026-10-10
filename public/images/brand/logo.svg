@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 64" fill="none">
+  <rect x="2" y="2" width="60" height="60" rx="12" fill="#881326" stroke="#C5A059" stroke-width="2"/>
+  <!-- Stylized Monogram 'A' -->
+  <path d="M32 14L45 48H39.5L36.8 40.5H27.2L24.5 48H19L32 14ZM32 24.5L28.8 35.5H35.2L32 24.5Z" fill="#FDFBF7"/>
+  <circle cx="32" cy="18" r="1.5" fill="#C5A059"/>
+  <!-- Brand Typography -->
+  <text x="76" y="28" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="20" font-weight="800" letter-spacing="1.5" fill="#121417">ARAVIND</text>
+  <text x="178" y="28" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="20" font-weight="800" letter-spacing="1.5" fill="#881326">READYMADES</text>
+  <text x="76" y="46" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="9.5" font-weight="600" letter-spacing="2" fill="#71717A">LADIES • GENTS • KIDS WEAR</text>
+  <text x="76" y="58" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="8" font-weight="500" letter-spacing="1" fill="#C5A059">MALIKIPURAM, AP</text>
+</svg>
