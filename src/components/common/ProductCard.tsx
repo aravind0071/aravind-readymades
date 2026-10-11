@@ -109,33 +109,9 @@ export default function ProductCard({ product, whatsappNumber = '9959257373' }: 
             alt={product.name}
             fill
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-            className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+            className="object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
           />
         </Link>
-
-        {/* Refined Luxury Badges (Sleek Horizontal Placement, Never Clumsy) */}
-        <div className="absolute top-3 left-3 flex items-center gap-1.5 z-10 pointer-events-none max-w-[70%]">
-          {product.new_arrival && product.discount_price ? (
-            <>
-              <span className="inline-flex items-center gap-1 bg-[#881326] text-[#FDFBF7] text-[9px] uppercase font-black tracking-wider px-2.5 py-1 rounded-full shadow-md border border-[#C5A059]/40 backdrop-blur-md">
-                <Sparkles className="w-2.5 h-2.5 text-[#C5A059]" />
-                <span>NEW</span>
-              </span>
-              <span className="inline-flex items-center bg-[#121417]/90 text-[#C5A059] text-[9px] uppercase font-bold tracking-wider px-2.5 py-1 rounded-full shadow-sm border border-[#C5A059]/30 backdrop-blur-md">
-                SPECIAL VALUE
-              </span>
-            </>
-          ) : product.new_arrival ? (
-            <span className="inline-flex items-center gap-1.5 bg-[#881326] text-[#FDFBF7] text-[9px] uppercase font-black tracking-widest px-3 py-1 rounded-full shadow-md border border-[#C5A059]/40 backdrop-blur-md">
-              <Sparkles className="w-2.5 h-2.5 text-[#C5A059]" />
-              <span>NEW COLLECTION</span>
-            </span>
-          ) : product.discount_price ? (
-            <span className="inline-flex items-center bg-[#121417]/90 text-[#C5A059] text-[9px] uppercase font-bold tracking-wider px-3 py-1 rounded-full shadow-sm border border-[#C5A059]/30 backdrop-blur-md">
-              SPECIAL VALUE
-            </span>
-          ) : null}
-        </div>
 
         {/* Minimal Frosted Wishlist Toggle */}
         <button
@@ -174,11 +150,24 @@ export default function ProductCard({ product, whatsappNumber = '9959257373' }: 
       {/* 2. Product Information Block */}
       <div className="p-4 sm:p-5 flex flex-col flex-1 justify-between gap-3 bg-white">
         <div>
-          {/* Category & Product Code */}
-          <div className="flex items-center justify-between text-[11px] font-bold tracking-wider uppercase mb-1">
-            <span className="text-[#881326]">
-              {product.category?.name ?? 'Collection'}
-            </span>
+          {/* Category, Badges & Product Code (Clean Boutique Styling - Never Covers Photo) */}
+          <div className="flex items-center justify-between text-[11px] font-bold tracking-wider uppercase mb-1.5">
+            <div className="flex items-center gap-1.5 flex-wrap">
+              <span className="text-[#881326] font-black">
+                {product.category?.name ?? 'Collection'}
+              </span>
+              {product.new_arrival && (
+                <span className="inline-flex items-center gap-0.5 bg-[#881326] text-white text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full shadow-sm">
+                  <Sparkles className="w-2.5 h-2.5 text-[#C5A059]" />
+                  <span>NEW</span>
+                </span>
+              )}
+              {product.discount_price && (
+                <span className="inline-flex items-center bg-[#121417] text-[#C5A059] text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full shadow-sm">
+                  SPECIAL VALUE
+                </span>
+              )}
+            </div>
             <span className="text-gray-400 font-mono tracking-normal text-[10px] bg-gray-50 px-1.5 py-0.5 rounded border border-gray-200">
               {product.product_code}
             </span>
