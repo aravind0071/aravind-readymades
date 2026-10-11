@@ -1,12 +1,12 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
-import { Search, Phone, MessageCircle, Menu, X, MapPin, Clock } from 'lucide-react';
+import { Search, Phone, MessageCircle, Menu, X, MapPin, Clock, Heart, ShieldCheck, ArrowRight } from 'lucide-react';
 import { DEFAULT_STORE_SETTINGS } from '@/lib/constants/store-defaults';
 import { generateGeneralWhatsAppLink } from '@/lib/utils/whatsapp';
+import { getWishlistCount } from '@/lib/utils/wishlist';
 
 export default function Header() {
   const pathname = usePathname();
@@ -14,6 +14,14 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [wishlistCount, setWishlistCount] = useState(0);
+
+  useEffect(() => {
+    setWishlistCount(getWishlistCount());
+    const handleUpdate = () => setWishlistCount(getWishlistCount());
+    window.addEventListener('wishlist-updated', handleUpdate);
+    return () => window.removeEventListener('wishlist-updated', handleUpdate);
+  }, []);
 
   const navLinks = [
     { name: 'Home', href: '/' },
@@ -53,12 +61,20 @@ export default function Header() {
             </span>
           </div>
           <div className="flex items-center gap-3 text-xs">
+            <Link
+              href="/admin/login"
+              className="flex items-center gap-1.5 text-[11px] font-bold text-[#C5A059] hover:text-white bg-[#C5A059]/10 px-2.5 py-0.5 rounded border border-[#C5A059]/30 transition-all hover:bg-[#C5A059]/20"
+            >
+              <ShieldCheck className="w-3.5 h-3.5" />
+              <span>Host / Owner Login</span>
+            </Link>
+            <span className="text-[#3F3F46]">|</span>
             <a
               href={`tel:${DEFAULT_STORE_SETTINGS.phone_primary}`}
               className="hover:text-[#C5A059] flex items-center gap-1 transition-colors"
             >
               <Phone className="w-3 h-3 text-[#C5A059]" />
-              <span>{DEFAULT_STORE_SETTINGS.phone_primary}</span>
+              <span className="hidden sm:inline">{DEFAULT_STORE_SETTINGS.phone_primary}</span>
             </a>
             <span className="text-[#3F3F46]">|</span>
             <a
@@ -123,6 +139,31 @@ export default function Header() {
               >
                 <Search className="w-5 h-5" />
               </button>
+
+              {/* Wishlist Button (Boutique Style) */}
+              <Link
+                href="/wishlist"
+                aria-label="View Wishlist"
+                className="relative p-2 text-gray-700 hover:text-[#881326] hover:bg-black/5 rounded-full transition-colors flex items-center justify-center group"
+                title="My Wishlist"
+              >
+                <Heart className="w-5 h-5 group-hover:fill-[#881326] transition-colors" />
+                {wishlistCount > 0 && (
+                  <span className="absolute -top-0.5 -right-0.5 bg-[#881326] text-white text-[10px] font-black w-4 h-4 rounded-full flex items-center justify-center shadow-sm">
+                    {wishlistCount}
+                  </span>
+                )}
+              </Link>
+
+              {/* Host/Owner Login Direct Button */}
+              <Link
+                href="/admin/login"
+                className="hidden md:inline-flex items-center gap-1.5 px-3 py-2 text-xs font-bold text-[#881326] bg-[#881326]/10 hover:bg-[#881326]/20 rounded-md transition-colors border border-[#881326]/20"
+                title="Store Owner Portal (Stock, Prices & Products)"
+              >
+                <ShieldCheck className="w-4 h-4 text-[#881326]" />
+                <span>Host Login</span>
+              </Link>
 
               {/* WhatsApp Quick CTA Button */}
               <a
@@ -213,6 +254,30 @@ export default function Header() {
 
             {/* Mobile Drawer Bottom Info */}
             <div className="pt-6 border-t border-[#E8E3D9] space-y-3">
+              <Link
+                href="/wishlist"
+                onClick={() => setMobileMenuOpen(false)}
+                className="w-full flex items-center justify-between p-3 bg-[#881326]/5 rounded-xl border border-[#881326]/15 text-[#881326] font-bold text-xs"
+              >
+                <span className="flex items-center gap-2">
+                  <Heart className="w-4 h-4 fill-[#881326]" />
+                  Saved Wishlist ({wishlistCount})
+                </span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+
+              <Link
+                href="/admin/login"
+                onClick={() => setMobileMenuOpen(false)}
+                className="w-full flex items-center justify-between p-3 bg-amber-50 rounded-xl border border-amber-200 text-[#881326] font-bold text-xs"
+              >
+                <span className="flex items-center gap-2">
+                  <ShieldCheck className="w-4 h-4 text-[#881326]" />
+                  Host / Owner Login (Manage Stock)
+                </span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+
               <a
                 href={whatsappUrl}
                 target="_blank"
@@ -222,6 +287,7 @@ export default function Header() {
                 <MessageCircle className="w-4 h-4" />
                 WhatsApp Us
               </a>
+
               <a
                 href={`tel:${DEFAULT_STORE_SETTINGS.phone_primary}`}
                 className="w-full flex items-center justify-center gap-2 bg-[#121417] text-white py-2.5 rounded-lg text-sm font-semibold"

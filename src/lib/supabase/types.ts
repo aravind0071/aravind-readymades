@@ -52,6 +52,7 @@ export interface ProductImage {
   alt_text: string;
   display_order: number;
   is_primary: boolean;
+  colour?: string;
 }
 
 export interface Product {
