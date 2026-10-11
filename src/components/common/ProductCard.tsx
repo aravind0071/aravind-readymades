@@ -150,25 +150,24 @@ export default function ProductCard({ product, whatsappNumber = '9959257373' }: 
       {/* 2. Product Information Block */}
       <div className="p-4 sm:p-5 flex flex-col flex-1 justify-between gap-3 bg-white">
         <div>
-          {/* Category, Badges & Product Code (Clean Boutique Styling - Never Covers Photo) */}
-          <div className="flex items-center justify-between text-[11px] font-bold tracking-wider uppercase mb-1.5">
-            <div className="flex items-center gap-1.5 flex-wrap">
-              <span className="text-[#881326] font-black">
+          {/* Category, Badges & Product Code (Clean Boutique Styling - Strictly 1 Line Uniform Height) */}
+          <div className="flex items-center justify-between text-[11px] font-bold tracking-wider uppercase mb-1.5 h-6">
+            <div className="flex items-center gap-1.5 min-w-0">
+              <span className="text-[#881326] font-black shrink-0">
                 {product.category?.name ?? 'Collection'}
               </span>
-              {product.new_arrival && (
-                <span className="inline-flex items-center gap-0.5 bg-[#881326] text-white text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full shadow-sm">
+              {product.new_arrival ? (
+                <span className="inline-flex items-center gap-0.5 bg-[#881326] text-white text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full shadow-sm shrink-0">
                   <Sparkles className="w-2.5 h-2.5 text-[#C5A059]" />
                   <span>NEW</span>
                 </span>
-              )}
-              {product.discount_price && (
-                <span className="inline-flex items-center bg-[#121417] text-[#C5A059] text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full shadow-sm">
+              ) : product.discount_price ? (
+                <span className="inline-flex items-center bg-[#121417] text-[#C5A059] text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full shadow-sm shrink-0">
                   SPECIAL VALUE
                 </span>
-              )}
+              ) : null}
             </div>
-            <span className="text-gray-400 font-mono tracking-normal text-[10px] bg-gray-50 px-1.5 py-0.5 rounded border border-gray-200">
+            <span className="text-gray-400 font-mono tracking-normal text-[10px] bg-gray-50 px-1.5 py-0.5 rounded border border-gray-200 shrink-0">
               {product.product_code}
             </span>
           </div>
