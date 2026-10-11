@@ -15,7 +15,8 @@ interface ProductCardProps {
 
 // Color name to CSS background color helper
 const COLOR_HEX_MAP: Record<string, string> = {
-  'Olive Green': '#556B2F',
+  'Navy & Grey': '#1B2A4A',
+  'Charcoal & Black': '#222222',
   'Classic Navy': '#1B2A4A',
   'Charcoal Grey': '#36454F',
   'Indigo Dark': '#1C2841',
@@ -112,19 +113,28 @@ export default function ProductCard({ product, whatsappNumber = '9959257373' }: 
           />
         </Link>
 
-        {/* Luxury Gold & Crimson Badges Top Left */}
-        <div className="absolute top-3 left-3 flex flex-col gap-1.5 z-10 pointer-events-none">
-          {product.new_arrival && (
-            <span className="inline-flex items-center gap-1 bg-[#881326] text-[#FDFBF7] text-[10px] uppercase font-black tracking-widest px-2.5 py-1 rounded-md shadow-md border border-[#C5A059]/40 backdrop-blur-sm">
+        {/* Refined Luxury Badges (Sleek Horizontal Placement, Never Clumsy) */}
+        <div className="absolute top-3 left-3 flex items-center gap-1.5 z-10 pointer-events-none max-w-[70%]">
+          {product.new_arrival && product.discount_price ? (
+            <>
+              <span className="inline-flex items-center gap-1 bg-[#881326] text-[#FDFBF7] text-[9px] uppercase font-black tracking-wider px-2.5 py-1 rounded-full shadow-md border border-[#C5A059]/40 backdrop-blur-md">
+                <Sparkles className="w-2.5 h-2.5 text-[#C5A059]" />
+                <span>NEW</span>
+              </span>
+              <span className="inline-flex items-center bg-[#121417]/90 text-[#C5A059] text-[9px] uppercase font-bold tracking-wider px-2.5 py-1 rounded-full shadow-sm border border-[#C5A059]/30 backdrop-blur-md">
+                SPECIAL VALUE
+              </span>
+            </>
+          ) : product.new_arrival ? (
+            <span className="inline-flex items-center gap-1.5 bg-[#881326] text-[#FDFBF7] text-[9px] uppercase font-black tracking-widest px-3 py-1 rounded-full shadow-md border border-[#C5A059]/40 backdrop-blur-md">
               <Sparkles className="w-2.5 h-2.5 text-[#C5A059]" />
               <span>NEW COLLECTION</span>
             </span>
-          )}
-          {product.discount_price && (
-            <span className="inline-flex items-center bg-[#121417]/90 text-[#C5A059] text-[10px] uppercase font-bold tracking-wider px-2.5 py-0.5 rounded-md shadow-sm border border-[#C5A059]/30 backdrop-blur-sm">
+          ) : product.discount_price ? (
+            <span className="inline-flex items-center bg-[#121417]/90 text-[#C5A059] text-[9px] uppercase font-bold tracking-wider px-3 py-1 rounded-full shadow-sm border border-[#C5A059]/30 backdrop-blur-md">
               SPECIAL VALUE
             </span>
-          )}
+          ) : null}
         </div>
 
         {/* Minimal Frosted Wishlist Toggle */}
@@ -200,22 +210,35 @@ export default function ProductCard({ product, whatsappNumber = '9959257373' }: 
 
           {/* Interactive Color Bubbles Preview */}
           {product.colours && product.colours.length > 0 && (
-            <div className="mt-3 flex items-center gap-1.5">
-              <span className="text-[10px] text-gray-400 font-semibold uppercase tracking-wider mr-1">
-                Colors:
-              </span>
+            <div className="mt-3 flex items-center justify-between gap-1">
               <div className="flex items-center gap-1.5 flex-wrap">
+                <span className="text-[10px] text-gray-400 font-semibold uppercase tracking-wider mr-0.5">
+                  Colors:
+                </span>
                 {product.colours.map((col) => {
-                  const isSelected = previewColor === col;
-                  const hex = COLOR_HEX_MAP[col] || '#A1A1AA';
+                  const isSelected = previewColor.toLowerCase() === col.toLowerCase();
+                  const hex =
+                    COLOR_HEX_MAP[col] ||
+                    (col.toLowerCase().includes('navy')
+                      ? '#1B2A4A'
+                      : col.toLowerCase().includes('grey') || col.toLowerCase().includes('gray')
+                      ? '#708090'
+                      : col.toLowerCase().includes('black')
+                      ? '#1A1A1A'
+                      : '#A1A1AA');
+
                   return (
                     <button
                       key={col}
                       type="button"
                       title={col}
-                      onClick={() => setPreviewColor(col)}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        setPreviewColor(col);
+                      }}
                       onMouseEnter={() => setPreviewColor(col)}
-                      className={`w-3.5 h-3.5 rounded-full border transition-all ${
+                      className={`w-3.5 h-3.5 rounded-full border transition-all cursor-pointer ${
                         isSelected
                           ? 'ring-2 ring-[#881326] ring-offset-1 scale-125'
                           : 'border-gray-300 hover:scale-110'
@@ -225,6 +248,9 @@ export default function ProductCard({ product, whatsappNumber = '9959257373' }: 
                   );
                 })}
               </div>
+              <span className="text-[10px] font-bold text-[#881326] truncate max-w-[100px] text-right">
+                {previewColor}
+              </span>
             </div>
           )}
 

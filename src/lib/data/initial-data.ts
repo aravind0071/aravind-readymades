@@ -89,7 +89,8 @@ export const INITIAL_PRODUCTS: Product[] = [
     created_at: '2025-01-01T00:00:00.000Z',
     images: [
       { id: 'img-m1-1', product_id: 'prod-m-01', image_url: '/images/products/shirt_casual_olive.jpg', alt_text: 'Premium Micro-Check Casual Shirt - Olive Green', display_order: 1, is_primary: true, colour: 'Olive Green' },
-      { id: 'img-m1-2', product_id: 'prod-m-01', image_url: '/images/products/polo_tshirt_navy.jpg', alt_text: 'Premium Micro-Check Casual Shirt - Classic Navy', display_order: 2, is_primary: false, colour: 'Classic Navy' },
+      { id: 'img-m1-2', product_id: 'prod-m-01', image_url: '/images/products/shirt_check_navy.jpg', alt_text: 'Premium Micro-Check Casual Shirt - Classic Navy', display_order: 2, is_primary: false, colour: 'Classic Navy' },
+      { id: 'img-m1-3', product_id: 'prod-m-01', image_url: '/images/products/shirt_check_charcoal.jpg', alt_text: 'Premium Micro-Check Casual Shirt - Charcoal Grey', display_order: 3, is_primary: false, colour: 'Charcoal Grey' },
     ],
   },
   {
@@ -133,7 +134,9 @@ export const INITIAL_PRODUCTS: Product[] = [
     display_order: 3,
     created_at: '2025-01-01T00:00:00.000Z',
     images: [
-      { id: 'img-m3-1', product_id: 'prod-m-03', image_url: '/images/categories/men_category.jpg', alt_text: 'Formal Cotton Trousers Model', display_order: 1, is_primary: true, colour: 'Navy Blue' },
+      { id: 'img-m3-1', product_id: 'prod-m-03', image_url: '/images/products/trousers_navy_blue.jpg', alt_text: 'Formal Cotton Stretch Trousers - Navy Blue', display_order: 1, is_primary: true, colour: 'Navy Blue' },
+      { id: 'img-m3-2', product_id: 'prod-m-03', image_url: '/images/products/trousers_slate_grey.jpg', alt_text: 'Formal Cotton Stretch Trousers - Slate Grey', display_order: 2, is_primary: false, colour: 'Slate Grey' },
+      { id: 'img-m3-3', product_id: 'prod-m-03', image_url: '/images/products/trousers_jet_black.jpg', alt_text: 'Formal Cotton Stretch Trousers - Jet Black', display_order: 3, is_primary: false, colour: 'Jet Black' },
     ],
   },
   {
@@ -201,7 +204,8 @@ export const INITIAL_PRODUCTS: Product[] = [
     display_order: 6,
     created_at: '2025-01-02T00:00:00.000Z',
     images: [
-      { id: 'img-m6-1', product_id: 'prod-m-06', image_url: '/images/categories/men_category.jpg', alt_text: 'Comfort Cotton Trunks Innerwear', display_order: 1, is_primary: true, colour: 'Navy & Grey' },
+      { id: 'img-m6-1', product_id: 'prod-m-06', image_url: '/images/products/mens_trunks_navy_grey.jpg', alt_text: 'Comfort Combed Cotton Trunks - Navy & Grey', display_order: 1, is_primary: true, colour: 'Navy & Grey' },
+      { id: 'img-m6-2', product_id: 'prod-m-06', image_url: '/images/products/mens_trunks_charcoal_black.jpg', alt_text: 'Comfort Combed Cotton Trunks - Charcoal & Black', display_order: 2, is_primary: false, colour: 'Charcoal & Black' },
     ],
   },
 
