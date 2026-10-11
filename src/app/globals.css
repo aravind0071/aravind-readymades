@@ -60,6 +60,42 @@ body {
   margin-right: 2px;
 }
 
+/* Neumorphic 3D Embossed Soft-UI Utilities */
+.neu-flat {
+  background: #E8ECEF;
+  box-shadow: 18px 18px 40px #cfd3d8, -18px -18px 40px #ffffff;
+}
+
+.neu-circle {
+  background: #E8ECEF;
+  box-shadow: 22px 22px 45px #cfd3d8, -22px -22px 45px #ffffff;
+}
+
+.neu-inset {
+  background: #E8ECEF;
+  box-shadow: inset 4px 4px 8px #cfd3d8, inset -4px -4px 8px #ffffff;
+}
+
+.neu-inset-focus:focus-within {
+  box-shadow: inset 3px 3px 6px #cfd3d8, inset -3px -3px 6px #ffffff, 0 0 0 2px #881326;
+}
+
+.neu-btn-crimson {
+  background: linear-gradient(135deg, #881326 0%, #5E0D1B 100%);
+  box-shadow: 0 10px 25px rgba(136, 19, 38, 0.38), 4px 4px 10px #cfd3d8, -4px -4px 10px #ffffff;
+}
+
+.neu-btn-crimson:hover {
+  background: linear-gradient(135deg, #9C182F 0%, #6E0F20 100%);
+  box-shadow: 0 12px 30px rgba(136, 19, 38, 0.45);
+}
+
+.neu-btn-crimson:active {
+  transform: scale(0.98);
+  box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+
 /* Subtle image hover zoom */
 .zoom-effect {
   overflow: hidden;

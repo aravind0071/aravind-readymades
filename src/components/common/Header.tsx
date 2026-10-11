@@ -3,10 +3,16 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { Search, Phone, MessageCircle, Menu, X, MapPin, Clock, Heart, ShieldCheck, ArrowRight } from 'lucide-react';
+import { Search, Phone, MessageCircle, Menu, X, MapPin, Clock, Heart, ShieldCheck, ArrowRight, User } from 'lucide-react';
 import { DEFAULT_STORE_SETTINGS } from '@/lib/constants/store-defaults';
 import { generateGeneralWhatsAppLink } from '@/lib/utils/whatsapp';
 import { getWishlistCount } from '@/lib/utils/wishlist';
+
+interface HeaderUser {
+  id: string;
+  email: string;
+  role: 'host' | 'member';
+}
 
 export default function Header() {
   const pathname = usePathname();
@@ -15,12 +21,36 @@ export default function Header() {
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [wishlistCount, setWishlistCount] = useState(0);
+  const [currentUser, setCurrentUser] = useState<HeaderUser | null>(null);
+
+  const checkSession = async () => {
+    try {
+      const res = await fetch('/api/auth/session');
+      const data = await res.json();
+      if (data.authenticated && data.user) {
+        setCurrentUser(data.user);
+      } else {
+        setCurrentUser(null);
+      }
+    } catch {
+      setCurrentUser(null);
+    }
+  };
 
   useEffect(() => {
     setWishlistCount(getWishlistCount());
+    checkSession();
+
     const handleUpdate = () => setWishlistCount(getWishlistCount());
+    const handleAuthChange = () => checkSession();
+
     window.addEventListener('wishlist-updated', handleUpdate);
-    return () => window.removeEventListener('wishlist-updated', handleUpdate);
+    window.addEventListener('auth-state-changed', handleAuthChange);
+
+    return () => {
+      window.removeEventListener('wishlist-updated', handleUpdate);
+      window.removeEventListener('auth-state-changed', handleAuthChange);
+    };
   }, []);
 
   const navLinks = [
@@ -155,15 +185,37 @@ export default function Header() {
                 )}
               </Link>
 
-              {/* Host/Owner Login Direct Button */}
-              <Link
-                href="/admin/login"
-                className="hidden md:inline-flex items-center gap-1.5 px-3 py-2 text-xs font-bold text-[#881326] bg-[#881326]/10 hover:bg-[#881326]/20 rounded-md transition-colors border border-[#881326]/20"
-                title="Store Owner Portal (Stock, Prices & Products)"
-              >
-                <ShieldCheck className="w-4 h-4 text-[#881326]" />
-                <span>Host Login</span>
-              </Link>
+              {/* Dynamic Unified Login / Account Button */}
+              {currentUser ? (
+                currentUser.role === 'host' ? (
+                  <Link
+                    href="/admin/dashboard"
+                    className="hidden md:inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-bold text-[#881326] bg-[#C5A059]/15 hover:bg-[#C5A059]/25 rounded-full transition-all border border-[#C5A059]/40 shadow-sm"
+                    title="Store Owner Portal (Host)"
+                  >
+                    <ShieldCheck className="w-4 h-4 text-[#881326]" />
+                    <span>Host Admin</span>
+                  </Link>
+                ) : (
+                  <Link
+                    href="/account"
+                    className="hidden md:inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-bold text-[#121417] bg-gray-100 hover:bg-gray-200 rounded-full transition-all border border-gray-200"
+                    title="Customer Account"
+                  >
+                    <User className="w-3.5 h-3.5 text-[#881326]" />
+                    <span>My Account</span>
+                  </Link>
+                )
+              ) : (
+                <Link
+                  href="/login"
+                  className="hidden md:inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-bold text-[#881326] bg-[#881326]/10 hover:bg-[#881326]/20 rounded-full transition-all border border-[#881326]/20"
+                  title="Sign In or Register with Email OTP"
+                >
+                  <User className="w-3.5 h-3.5 text-[#881326]" />
+                  <span>Sign In</span>
+                </Link>
+              )}
 
               {/* WhatsApp Quick CTA Button */}
               <a
@@ -266,17 +318,46 @@ export default function Header() {
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
 
-              <Link
-                href="/admin/login"
-                onClick={() => setMobileMenuOpen(false)}
-                className="w-full flex items-center justify-between p-3 bg-amber-50 rounded-xl border border-amber-200 text-[#881326] font-bold text-xs"
-              >
-                <span className="flex items-center gap-2">
-                  <ShieldCheck className="w-4 h-4 text-[#881326]" />
-                  Host / Owner Login (Manage Stock)
-                </span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
+              {/* Dynamic Mobile Auth Link */}
+              {currentUser ? (
+                currentUser.role === 'host' ? (
+                  <Link
+                    href="/admin/dashboard"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="w-full flex items-center justify-between p-3 bg-amber-50 rounded-xl border border-amber-300 text-[#881326] font-bold text-xs"
+                  >
+                    <span className="flex items-center gap-2">
+                      <ShieldCheck className="w-4 h-4 text-[#881326]" />
+                      Host Admin Dashboard
+                    </span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                ) : (
+                  <Link
+                    href="/account"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="w-full flex items-center justify-between p-3 bg-emerald-50 rounded-xl border border-emerald-200 text-emerald-900 font-bold text-xs"
+                  >
+                    <span className="flex items-center gap-2">
+                      <User className="w-4 h-4 text-emerald-700" />
+                      My Account ({currentUser.email.split('@')[0]})
+                    </span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                )
+              ) : (
+                <Link
+                  href="/login"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="w-full flex items-center justify-between p-3 bg-gray-50 rounded-xl border border-gray-200 text-[#121417] font-bold text-xs"
+                >
+                  <span className="flex items-center gap-2">
+                    <User className="w-4 h-4 text-[#881326]" />
+                    Sign In / Register (Email OTP)
+                  </span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+              )}
 
               <a
                 href={whatsappUrl}

@@ -27,11 +27,17 @@ export default function AdminNav() {
     { name: 'Store Settings', href: '/admin/settings', icon: Settings },
   ];
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    try {
+      await fetch('/api/auth/logout', { method: 'POST' });
+    } catch (e) {
+      // Continue cleanup
+    }
     if (typeof window !== 'undefined') {
       localStorage.removeItem('aravind_admin_session');
+      window.dispatchEvent(new Event('auth-state-changed'));
     }
-    router.push('/admin/login');
+    router.push('/login');
   };
 
   return (
