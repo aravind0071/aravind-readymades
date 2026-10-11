@@ -230,6 +230,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     created_at: '2025-01-01T00:00:00.000Z',
     images: [
       { id: 'img-w1-1', product_id: 'prod-w-01', image_url: '/images/products/kurti_designer_cotton.jpg', alt_text: 'Royal Blue Embroidered Cotton Kurti', display_order: 1, is_primary: true, colour: 'Royal Blue' },
+      { id: 'img-w1-2', product_id: 'prod-w-01', image_url: '/images/products/kurti_maroon.jpg', alt_text: 'Deep Maroon Embroidered Cotton Kurti', display_order: 2, is_primary: false, colour: 'Deep Maroon' },
     ],
   },
   {
@@ -252,6 +253,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     created_at: '2025-01-02T00:00:00.000Z',
     images: [
       { id: 'img-w2-1', product_id: 'prod-w-02', image_url: '/images/products/women_anarkali_kurti.jpg', alt_text: 'Flared Cotton Anarkali Kurti - Emerald Green', display_order: 1, is_primary: true, colour: 'Emerald Green' },
+      { id: 'img-w2-2', product_id: 'prod-w-02', image_url: '/images/products/anarkali_deep_teal.jpg', alt_text: 'Flared Cotton Anarkali Kurti - Deep Teal', display_order: 2, is_primary: false, colour: 'Deep Teal' },
     ],
   },
   {
@@ -272,7 +274,8 @@ export const INITIAL_PRODUCTS: Product[] = [
     display_order: 9,
     created_at: '2025-01-01T00:00:00.000Z',
     images: [
-      { id: 'img-w3-1', product_id: 'prod-w-03', image_url: '/images/categories/women_category.jpg', alt_text: 'Floral Casual Top', display_order: 1, is_primary: true, colour: 'Peach Floral' },
+      { id: 'img-w3-1', product_id: 'prod-w-03', image_url: '/images/products/women_top_peach.jpg', alt_text: 'Floral Casual Top - Peach Floral', display_order: 1, is_primary: true, colour: 'Peach Floral' },
+      { id: 'img-w3-2', product_id: 'prod-w-03', image_url: '/images/products/women_top_ivory.jpg', alt_text: 'Floral Casual Top - Ivory White', display_order: 2, is_primary: false, colour: 'Ivory White' },
     ],
   },
   {
@@ -295,6 +298,8 @@ export const INITIAL_PRODUCTS: Product[] = [
     created_at: '2025-01-01T00:00:00.000Z',
     images: [
       { id: 'img-w4-1', product_id: 'prod-w-04', image_url: '/images/products/women_ankle_trousers.jpg', alt_text: 'Straight-Fit Ankle Cotton Trousers - Beige', display_order: 1, is_primary: true, colour: 'Beige' },
+      { id: 'img-w4-2', product_id: 'prod-w-04', image_url: '/images/products/women_trousers_black.jpg', alt_text: 'Straight-Fit Ankle Cotton Trousers - Black', display_order: 2, is_primary: false, colour: 'Black' },
+      { id: 'img-w4-3', product_id: 'prod-w-04', image_url: '/images/products/women_trousers_offwhite.jpg', alt_text: 'Straight-Fit Ankle Cotton Trousers - Off-White', display_order: 3, is_primary: false, colour: 'Off-White' },
     ],
   },
   {
@@ -317,6 +322,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     created_at: '2025-01-02T00:00:00.000Z',
     images: [
       { id: 'img-w5-1', product_id: 'prod-w-05', image_url: '/images/products/women_coord_set.jpg', alt_text: 'Floral Cotton Co-Ord Set - Rust Terracotta', display_order: 1, is_primary: true, colour: 'Rust Terracotta' },
+      { id: 'img-w5-2', product_id: 'prod-w-05', image_url: '/images/products/coord_olive_flora.jpg', alt_text: 'Floral Cotton Co-Ord Set - Olive Flora', display_order: 2, is_primary: false, colour: 'Olive Flora' },
     ],
   },
 
@@ -341,6 +347,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     created_at: '2025-01-01T00:00:00.000Z',
     images: [
       { id: 'img-k1-1', product_id: 'prod-k-01', image_url: '/images/products/girls_frock_dress.jpg', alt_text: 'Girls Pastel Floral Frock - Pastel Pink', display_order: 1, is_primary: true, colour: 'Pastel Pink' },
+      { id: 'img-k1-2', product_id: 'prod-k-01', image_url: '/images/products/frock_sunshine_yellow.jpg', alt_text: 'Girls Pastel Floral Frock - Sunshine Yellow', display_order: 2, is_primary: false, colour: 'Sunshine Yellow' },
     ],
   },
   {
@@ -362,7 +369,8 @@ export const INITIAL_PRODUCTS: Product[] = [
     display_order: 13,
     created_at: '2025-01-02T00:00:00.000Z',
     images: [
-      { id: 'img-k2-1', product_id: 'prod-k-02', image_url: '/images/products/kids_party_frock.jpg', alt_text: 'Girls Ruby Red Party Frock', display_order: 1, is_primary: true, colour: 'Ruby Red' },
+      { id: 'img-k2-1', product_id: 'prod-k-02', image_url: '/images/products/kids_party_frock.jpg', alt_text: 'Girls Ruby Red Party Frock - Ruby Red', display_order: 1, is_primary: true, colour: 'Ruby Red' },
+      { id: 'img-k2-2', product_id: 'prod-k-02', image_url: '/images/products/frock_maroon_velvet.jpg', alt_text: 'Girls Ruby Red Party Frock - Maroon Velvet', display_order: 2, is_primary: false, colour: 'Maroon Velvet' },
     ],
   },
   {
@@ -383,7 +391,8 @@ export const INITIAL_PRODUCTS: Product[] = [
     display_order: 14,
     created_at: '2025-01-01T00:00:00.000Z',
     images: [
-      { id: 'img-k3-1', product_id: 'prod-k-03', image_url: '/images/categories/kids_category.jpg', alt_text: 'Boys Plaid Casual Shirt', display_order: 1, is_primary: true, colour: 'Navy & Orange Check' },
+      { id: 'img-k3-1', product_id: 'prod-k-03', image_url: '/images/products/kids_shirt_navy_orange.jpg', alt_text: 'Boys Plaid Casual Shirt - Navy & Orange Check', display_order: 1, is_primary: true, colour: 'Navy & Orange Check' },
+      { id: 'img-k3-2', product_id: 'prod-k-03', image_url: '/images/products/kids_shirt_skyblue_check.jpg', alt_text: 'Boys Plaid Casual Shirt - Sky Blue Check', display_order: 2, is_primary: false, colour: 'Sky Blue Check' },
     ],
   },
   {
@@ -405,7 +414,8 @@ export const INITIAL_PRODUCTS: Product[] = [
     display_order: 15,
     created_at: '2025-01-01T00:00:00.000Z',
     images: [
-      { id: 'img-k4-1', product_id: 'prod-k-04', image_url: '/images/products/kids_denim_jeans.jpg', alt_text: 'Kids Comfort-Stretch Denim Jeans Model', display_order: 1, is_primary: true, colour: 'Classic Indigo' },
+      { id: 'img-k4-1', product_id: 'prod-k-04', image_url: '/images/products/kids_denim_jeans.jpg', alt_text: 'Kids Comfort-Stretch Denim Jeans - Classic Indigo', display_order: 1, is_primary: true, colour: 'Classic Indigo' },
+      { id: 'img-k4-2', product_id: 'prod-k-04', image_url: '/images/products/kids_jeans_light_wash.jpg', alt_text: 'Kids Comfort-Stretch Denim Jeans - Light Wash Blue', display_order: 2, is_primary: false, colour: 'Light Wash Blue' },
     ],
   },
   {
@@ -426,7 +436,9 @@ export const INITIAL_PRODUCTS: Product[] = [
     display_order: 16,
     created_at: '2025-01-01T00:00:00.000Z',
     images: [
-      { id: 'img-k5-1', product_id: 'prod-k-05', image_url: '/images/products/kids_graphic_tshirt.jpg', alt_text: 'Kids Graphic Cotton T-Shirt Model', display_order: 1, is_primary: true, colour: 'Bright Yellow' },
+      { id: 'img-k5-1', product_id: 'prod-k-05', image_url: '/images/products/kids_graphic_tshirt.jpg', alt_text: 'Kids Graphic Cotton T-Shirt - Bright Yellow', display_order: 1, is_primary: true, colour: 'Bright Yellow' },
+      { id: 'img-k5-2', product_id: 'prod-k-05', image_url: '/images/products/kids_tee_skyblue.jpg', alt_text: 'Kids Graphic Cotton T-Shirt - Sky Blue', display_order: 2, is_primary: false, colour: 'Sky Blue' },
+      { id: 'img-k5-3', product_id: 'prod-k-05', image_url: '/images/products/kids_tee_crimson.jpg', alt_text: 'Kids Graphic Cotton T-Shirt - Crimson Red', display_order: 3, is_primary: false, colour: 'Crimson Red' },
     ],
   },
   {
@@ -448,7 +460,8 @@ export const INITIAL_PRODUCTS: Product[] = [
     display_order: 17,
     created_at: '2025-01-02T00:00:00.000Z',
     images: [
-      { id: 'img-k6-1', product_id: 'prod-k-06', image_url: '/images/products/kids_dino_set.jpg', alt_text: 'Boys Dinosaur Print Set - Jungle Green & Navy', display_order: 1, is_primary: true, colour: 'Jungle Green & Navy' },
+      { id: 'img-k6-1', product_id: 'prod-k-06', image_url: '/images/products/kids_dino_set.jpg', alt_text: 'Boys Dinosaur Graphic Set - Jungle Green & Navy', display_order: 1, is_primary: true, colour: 'Jungle Green & Navy' },
+      { id: 'img-k6-2', product_id: 'prod-k-06', image_url: '/images/products/kids_dino_skyblue.jpg', alt_text: 'Boys Dinosaur Graphic Set - Sky Blue & Grey', display_order: 2, is_primary: false, colour: 'Sky Blue & Grey' },
     ],
   },
 ];
